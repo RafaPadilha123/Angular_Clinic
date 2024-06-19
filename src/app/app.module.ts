@@ -10,6 +10,7 @@ import { HeaderComponent } from './header/header.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListaComponent } from './lista/lista.component';
 import { EditCadastroComponent } from './edit-cadastro/edit-cadastro.component';
+import { CidadesService } from './cidades.service';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,7 @@ import { EditCadastroComponent } from './edit-cadastro/edit-cadastro.component';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [CidadesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

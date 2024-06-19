@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CadastrosService } from '../cadastro.service.spec';
+import { CidadeService } from '../cidades.service';
 import { tap, catchError } from 'rxjs/operators';
 
 @Component({
@@ -12,9 +13,11 @@ import { tap, catchError } from 'rxjs/operators';
 export class CadastroComponent implements OnInit {
   cadastroForm: FormGroup;
   mensagem: string = '';
+  cidades: any[] = [];
 
   constructor(
     private fb: FormBuilder,
+    private cidadeService: CidadeService,
     private cadastrosService: CadastrosService,
     private router: Router
   ) {
@@ -22,12 +25,23 @@ export class CadastroComponent implements OnInit {
       nome: ['', Validators.required],
       responsavel: ['', Validators.required],
       endereco: ['', Validators.required],
+      cidade: [''], 
       contato: ['', Validators.required],
       remuneracao: ['', Validators.required]
     });
+  
+    this.cidadeService.getCidades().subscribe((data: any[]) => {
+      this.cidades = data.map(city => ({ label: city.nome, value: city.id }));
+      const cidadeControl = this.cadastroForm.get('cidade');
+      cidadeControl?.setValue(this.cidades[0]?.value, { emitEvent: false }); // Define a primeira cidade como padrão
+    });
   }
 
+
   ngOnInit(): void {
+    this.cidadeService.getCidades().subscribe((data: any[]) => {
+      this.cidades = data.map(city => ({ label: city.nome, value: city.id }));
+    });
   }
 
   onSubmit() {
@@ -49,6 +63,7 @@ export class CadastroComponent implements OnInit {
       this.mensagem = 'Por favor, preencha todos os campos obrigatórios.';
     }
   }
+
 
   navigateToConvenios() {
     this.router.navigate(['/convenios']);
