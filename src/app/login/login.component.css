@@ -1,0 +1,34 @@
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+  
+  .container-fluid {
+    height: 100vh;
+  }
+  
+  .row {
+    height: 100%;
+  }
+  
+  .bg-image {
+    background-image: url('https://img.freepik.com/fotos-premium/web-30-o-futuro-da-internet_974154-1483.jpg?w=826');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .login {
+    background-color: #95e9cd;
+  }
+  
+  .login-heading {
+    font-weight: bold;
+    font-size: 40px;
+    font-family: 'Comic Sans MS';
+  }
+  
+  .btn-login {
+    font-size: 0.9rem;
+    letter-spacing: 0.05rem;
+    padding: 0.75rem 1rem;
+  }

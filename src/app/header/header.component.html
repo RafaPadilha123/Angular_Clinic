@@ -1,0 +1,24 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-custom">
+    <div class="container-fluid">
+      <h1 class="navbar-brand">Clínica Angular</h1>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav me-auto">
+        </ul>
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center">
+            <span class="navbar-text" *ngIf="currentUser">
+              {{ currentUser.email }}
+            </span>
+          </div>
+          <div>
+            <button class="btn btn-outline-primary me-2" *ngIf="isLoggedIn()" (click)="logout()">Sair</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+  

@@ -1,0 +1,15 @@
+{
+  "users": [
+    {
+      "email": "admin@clinica.com",
+      "password": "senha123",
+      "id": "31d0"
+    },
+    {
+      "email": "user@clinica.com",
+      "password": "senha123",
+      "id": "c5ce"
+    }
+  ],
+  "cadastros": []
+}

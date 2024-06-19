@@ -1,0 +1,29 @@
+<div class="container mt-5">
+  <h2>Lista de Convênios</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Responsável</th>
+        <th>Endereço</th>
+        <th>Contato</th>
+        <th>Remuneração</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let convenio of convenios">
+        <td>{{ convenio.nome }}</td>
+        <td>{{ convenio.responsavel }}</td>
+        <td>{{ convenio.endereco }}</td>
+        <td>{{ convenio.contato }}</td>
+        <td>{{ convenio.remuneracao }}</td>
+        <td>
+          <button class="btn btn-primary me-2" (click)="editConvenio(convenio.id)">Editar</button>
+          <button class="btn btn-danger" (click)="deleteConvenio(convenio.id)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <button type="button" class="btn btn-secondary mt-3" (click)="navigateToConvenios()">Voltar</button>
+</div>

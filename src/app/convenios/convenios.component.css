@@ -1,0 +1,52 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; 
+}
+
+.background-image {
+    background-image: url('../../assets/fundo.png');
+    background-size: cover;
+    background-position: center;
+    min-height: 93.3vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    font-family: Arial, sans-serif;
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-btn {
+    background-color: #95e9cd;
+    height: 60px;
+    width: 500px;
+    font-size: 18px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+    margin: 0 auto;
+    border: 1px solid #1a4636;
+}
+
+.custom-btn + .custom-btn {
+    margin-top: 20px;
+}
+
+.custom-btn:hover {
+    background-color: #fbfcfd;
+    color: rgb(10, 10, 10);
+    border-color: #fbfcfd;
+}
+
+.custom-btn .fas {
+    margin-right: 5px;
+}

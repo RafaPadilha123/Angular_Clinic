@@ -1,0 +1,38 @@
+.bg-custom {
+    background-color: #95e9cd !important;
+  }
+  
+  .navbar-light .navbar-brand {
+    color: #030303 !important;
+    font-size: 1.5rem;
+    margin-left: 25px;
+  }
+  
+  .navbar-light .navbar-toggler-icon {
+    color: #161515 !important;
+  }
+  
+  .navbar-light .navbar-nav .nav-link {
+    color: #000000 !important;
+    font-size: 1.2rem;
+  }
+  
+  .navbar-light .navbar-text {
+    color: #050505 !important;
+    font-size: 1.1rem;
+    font-family: 'Comic Sans MS', cursive;
+    font-style: italic;
+    margin-right: 40px; 
+  }
+  
+  .navbar-light .btn-outline-primary {
+    color: #fff !important;
+    border-color: #5e8376 !important;
+    background-color: #ad1703!important;
+  }
+  
+  .navbar-light .btn-outline-primary:hover {
+    background-color: #fff !important;
+    color: #525355 !important;
+  }
+  
