@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CadastrosService } from '../cadastro.service.spec';
+import { IbgeService } from '../ibge.service';
 import { tap, catchError } from 'rxjs/operators';
 import { ChangeDetectorRef } from '@angular/core';
 import { EMPTY } from 'rxjs';
@@ -14,11 +15,13 @@ import { EMPTY } from 'rxjs';
 export class EditCadastroComponent implements OnInit {
   editCadastroForm: FormGroup;
   mensagem: string = '';
-  convenioId: string | null = null; 
+  convenioId: string | null = null;
+  cidades: any[] = []; 
 
   constructor(
     private fb: FormBuilder,
     private cadastrosService: CadastrosService,
+    private ibgeService: IbgeService, 
     private router: Router,
     private route: ActivatedRoute,
     private cdr: ChangeDetectorRef
@@ -27,6 +30,7 @@ export class EditCadastroComponent implements OnInit {
       nome: ['', Validators.required],
       responsavel: ['', Validators.required],
       endereco: ['', Validators.required],
+      cidade: ['', Validators.required],
       contato: ['', Validators.required],
       remuneracao: ['', Validators.required]
     });
@@ -37,15 +41,25 @@ export class EditCadastroComponent implements OnInit {
       tap(params => {
         console.log('Parâmetros da rota:', params);
         if (params['id']) {
-          this.convenioId = params['id']; 
+          this.convenioId = params['id'];
           this.loadConvenio();
         }
       })
     ).subscribe();
+
+    this.carregarCidades(); 
+  }
+
+  carregarCidades() {
+    this.ibgeService.getCidades().subscribe(cidades => {
+      this.cidades = cidades;
+    }, error => {
+      console.error('Erro ao carregar cidades', error);
+    });
   }
 
   loadConvenio(): void {
-    if (this.convenioId!== null) {
+    if (this.convenioId !== null) {
       this.cadastrosService.getCadastro(this.convenioId).pipe(
         tap(data => {
           console.log('Dados carregados:', data);
@@ -72,7 +86,7 @@ export class EditCadastroComponent implements OnInit {
         catchError(error => {
           console.error('Erro ao atualizar:', error);
           this.mensagem = 'Erro ao atualizar. Por favor, tente novamente.';
-          throw error; 
+          throw error;
         })
       ).subscribe();
     } else {

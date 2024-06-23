@@ -5,14 +5,19 @@ import { CadastroComponent } from './cadastro/cadastro.component';
 import { LoginComponent } from './login/login.component';
 import { ListaComponent } from './lista/lista.component';
 import { EditCadastroComponent } from './edit-cadastro/edit-cadastro.component';
+import { AuthGuard } from './auth.guard';
+import { PasswordComponent } from './password/password.component';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
-  { path: 'convenios', component: ConveniosComponent },
-  { path: 'cadastro', component: CadastroComponent },
-  { path: 'cadastro/:id', component: EditCadastroComponent  },
-  { path: 'lista', component: ListaComponent }
+  { path: 'convenios', component: ConveniosComponent, canActivate: [AuthGuard] },
+  { path: 'cadastro', component: CadastroComponent, canActivate: [AuthGuard] },
+  { path: 'cadastro/:id', component: EditCadastroComponent, canActivate: [AuthGuard] },
+  { path: 'lista', component: ListaComponent, canActivate: [AuthGuard] },
+  { path: 'password', component: PasswordComponent },
+  { path: 'password', component: PasswordComponent },
+  { path: 'reset-password', component: PasswordComponent },
 ];
 
 @NgModule({

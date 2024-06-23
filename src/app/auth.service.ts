@@ -18,7 +18,7 @@ export class AuthService {
         map(users => {
           const user = users.find(u => u.email === email && u.password === password);
           if (user) {
-            localStorage.setItem(this.currentUserKey, email);
+            localStorage.setItem(this.currentUserKey, JSON.stringify(user));
             return true;
           } else {
             return false;
@@ -32,11 +32,10 @@ export class AuthService {
     localStorage.removeItem(this.currentUserKey);
   }
 
-  getCurrentUser(): { email: string } | null {
-    const userEmail = localStorage.getItem(this.currentUserKey);
-    return userEmail ? { email: userEmail } : null;
+  getCurrentUser(): any | null {
+    const user = localStorage.getItem(this.currentUserKey);
+    return user ? JSON.parse(user) : null;
   }
-
 
   isLoggedIn(): boolean {
     return this.getCurrentUser() !== null;

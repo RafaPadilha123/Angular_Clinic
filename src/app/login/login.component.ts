@@ -8,6 +8,7 @@ import { AuthService } from '../auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
+
   email: string = '';
   password: string = '';
   emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; 
@@ -30,4 +31,9 @@ export class LoginComponent {
       });
     }
   }
+
+  redirectTo(link: string) {
+    window.location.href = link; 
+  }
+
 }  

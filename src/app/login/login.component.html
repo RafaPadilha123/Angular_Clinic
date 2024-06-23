@@ -24,7 +24,7 @@
                 <div class="d-grid">
                   <button class="btn btn-lg btn-primary btn-login text-uppercase fw-bold mb-2" type="submit">Entrar</button>
                   <div class="text-center">
-                    <a class="small" href="#">Esqueci minha senha</a>
+                    <a class="small" [routerLink]="['/password']">Esqueci minha senha</a>
                   </div>
                 </div>
               </form>
@@ -35,3 +35,5 @@
     </div>
   </div>
   
+
+  //json-server --watch db.json --port 3000

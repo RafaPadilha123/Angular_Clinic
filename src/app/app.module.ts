@@ -10,7 +10,8 @@ import { HeaderComponent } from './header/header.component';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { ListaComponent } from './lista/lista.component';
 import { EditCadastroComponent } from './edit-cadastro/edit-cadastro.component';
-import { CidadesService } from './cidades.service';
+
+
 
 @NgModule({
   declarations: [
@@ -20,16 +21,19 @@ import { CidadesService } from './cidades.service';
     HeaderComponent,
     CadastroComponent,
     ListaComponent,
-    EditCadastroComponent
+    EditCadastroComponent,
+    
+   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
-  providers: [CidadesService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { CadastrosService } from '../cadastro.service.spec';
-import { CidadeService } from '../cidades.service';
+import { CadastrosService } from '../cadastro.service.spec'; 
 import { tap, catchError } from 'rxjs/operators';
+import { IbgeService } from '../ibge.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -13,34 +13,33 @@ import { tap, catchError } from 'rxjs/operators';
 export class CadastroComponent implements OnInit {
   cadastroForm: FormGroup;
   mensagem: string = '';
-  cidades: any[] = [];
+  cidades: any[] = []; 
 
   constructor(
     private fb: FormBuilder,
-    private cidadeService: CidadeService,
     private cadastrosService: CadastrosService,
+    private ibgeService: IbgeService,
     private router: Router
   ) {
     this.cadastroForm = this.fb.group({
       nome: ['', Validators.required],
       responsavel: ['', Validators.required],
       endereco: ['', Validators.required],
-      cidade: [''], 
+      cidade: ['', Validators.required],
       contato: ['', Validators.required],
-      remuneracao: ['', Validators.required]
-    });
-  
-    this.cidadeService.getCidades().subscribe((data: any[]) => {
-      this.cidades = data.map(city => ({ label: city.nome, value: city.id }));
-      const cidadeControl = this.cadastroForm.get('cidade');
-      cidadeControl?.setValue(this.cidades[0]?.value, { emitEvent: false }); // Define a primeira cidade como padrão
+      remuneracao: ['', Validators.required],
     });
   }
 
-
   ngOnInit(): void {
-    this.cidadeService.getCidades().subscribe((data: any[]) => {
-      this.cidades = data.map(city => ({ label: city.nome, value: city.id }));
+    this.carregarCidades(); 
+  }
+
+  carregarCidades() {
+    this.ibgeService.getCidades().subscribe(cidades => {
+      this.cidades = cidades;
+    }, error => {
+      console.error('Erro ao carregar cidades', error);
     });
   }
 
@@ -54,7 +53,6 @@ export class CadastroComponent implements OnInit {
           }, 2000);
         }),
         catchError(error => {
-          console.error('Erro ao cadastrar:', error);
           this.mensagem = 'Erro ao cadastrar. Por favor, tente novamente.';
           throw error;
         })
@@ -63,7 +61,6 @@ export class CadastroComponent implements OnInit {
       this.mensagem = 'Por favor, preencha todos os campos obrigatórios.';
     }
   }
-
 
   navigateToConvenios() {
     this.router.navigate(['/convenios']);
